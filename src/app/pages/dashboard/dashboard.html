@@ -1,0 +1,21 @@
+<!-- app.component.html -->
+<mat-sidenav-container class="app-container">
+  <!-- Sidenav -->
+  <mat-sidenav #sidenav mode="over" position="start">
+    <h3 class="sidenav-title">Shop by Department</h3>
+    <mat-nav-list>
+      @for (category of categories; track category.id) {
+        <mat-list-item (click)="selectCartegory(category)" >{{ category.name }}</mat-list-item>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Content -->
+  <mat-sidenav-content>
+    <app-header (menuClick)="sidenav.toggle()"></app-header>
+    
+    <main class="main-content">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

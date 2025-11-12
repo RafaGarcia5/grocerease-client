@@ -1,0 +1,54 @@
+<main>
+    <section class="header-section">
+        <mat-form-field appearance="outline" class="category-select">
+            <mat-label>Category</mat-label>
+            <mat-select [(value)]="selectedCategory" (selectionChange)="filterByCategory()">
+            <mat-option [value]="null">All</mat-option>
+            @for (c of categories; track c.id) {
+                <mat-option [value]="c.id">
+                    {{ c.name }}
+                </mat-option>
+            }
+            </mat-select>
+        </mat-form-field>
+        @if (products.length !== 0) {
+            <button matButton="filled" (click)="addNewProduct()">
+                <mat-icon>add</mat-icon>
+                New Product
+            </button>
+        }
+    </section>
+
+    @if (products.length !== 0) {
+        <section class="products-section">
+            <div class="products-grid">
+                @for (product of products; track product.id) {
+                    <app-product-card
+                        [product]="product"
+                        (updateClick)="editProduct(product)"
+                    ></app-product-card>
+                }
+            </div>
+        </section>
+
+        <section class="paginator-section">
+            <mat-paginator
+                [length]="totalItems"
+                [pageSize]="pageSize"
+                [pageIndex]="pageIndex"
+                [pageSizeOptions]="[30, 60, 90]"
+                (page)="onPageChange($event)"> 
+            </mat-paginator>
+        </section>
+    }@else {
+        <section class="no-results">
+            <mat-icon class="no-results-icon">search_off</mat-icon>
+            <h3>No products found</h3>
+            <p>The are no products available.</p>
+            <button matButton="filled" (click)="addNewProduct()">
+                <mat-icon>add</mat-icon>
+                New Product
+            </button>
+        </section>
+    }
+</main>

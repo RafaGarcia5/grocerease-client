@@ -1,0 +1,55 @@
+<section class="confirm-section">
+  <div class="confirm-header">
+    <button matIconButton (click)="stepper.previous()">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+    <h3>Review your order</h3>
+    <button mat-flat-button (click)="confirmOrder(stepper)">
+      Confirm and Pay
+    </button>
+  </div>
+
+  @if (user) {
+    <div class="confirm-user">
+      <h4>Shipping Details</h4>
+      <p><strong>Name:</strong> {{ user.name }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+
+      @if(user.address){
+        <div>
+          <p>
+            <strong>Address:</strong> 
+            {{ user.address.addressLine1 || '' }}
+            {{ user.address.addressLine2 || '' }},
+            {{ user.address.colony || '' }},
+            {{ user.address.city || '' }},
+            {{ user.address.state || '' }},
+            {{ user.address.zipCode || '' }}
+          </p>
+        </div>
+      }
+    </div>
+  }
+
+  <div class="confirm-items">
+    <div class="confirm-items-header">
+      <h4>Items</h4>
+      <p><strong>Total: {{ total | currency }} </strong></p>
+    </div>
+    @for (item of items; track item.id) {
+      <mat-card>
+        <mat-card-content class="item-card">
+          <div>
+            <p> <strong>{{ item.product.name }}</strong> </p>
+          </div>
+          
+          <div>
+            <p class="confirm-items-quantity">{{item.quantity}} x {{ item.product.price | currency }}</p>
+            <p>Subtotal: {{ subtotal(item.product.price, item.quantity) | currency }}</p>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+</section>

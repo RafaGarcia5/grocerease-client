@@ -1,0 +1,26 @@
+<main>
+  <section class="header-section">
+    <h1>Categories</h1>
+    <button matButton="filled" (click)="openAddDialog()">
+      <mat-icon>add</mat-icon>
+      New Category
+    </button>
+  </section>
+
+  <section class="categories-section">
+    <div class="category-grid">
+      @for (cat of categories; track cat.id) {
+          <mat-card class="category-card">
+            <mat-card-title>
+              {{ cat.name }}
+            </mat-card-title>
+            <mat-card-actions>
+              <button mat-icon-button color="accent" class="edit-btn" (click)="openEditDialog(cat)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+      }
+    </div>
+  </section>
+</main>

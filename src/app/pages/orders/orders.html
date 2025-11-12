@@ -1,0 +1,69 @@
+<main>
+  <section class="header-section">
+    <div class="title">
+      <h2>My Orders</h2>
+    </div>
+    <div class="sort-actions">
+      <mat-form-field appearance="outline" class="select-input">
+        <mat-label>Status</mat-label>
+        <mat-select [(value)]="selectedStatus" (selectionChange)="onFilterChange()">
+          <mat-option value="">All</mat-option>
+          @for (s of statuses; track s) {
+            <mat-option [value]="s">{{ s | titlecase }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <button matButton="filled" (click)="toggleSortDir()">
+        <!-- @if (sortDir === 'desc') {
+          <mat-icon>arrow_upward</mat-icon>
+        }@else {
+          <mat-icon>arrow_downward</mat-icon>
+        } -->
+        {{ sortDir === 'desc' ? 'Newest → Oldest' : 'Oldest → Newest' }}
+      </button>
+    </div>
+  </section>
+
+  @if (hasItems) {
+    <section class="orders-section">
+      <div class="orders-grid">
+        @for (order of orders; track order.id) {
+          <mat-card class="order-card" (click)="goToOrder(order.id)">
+            <mat-card-header>
+              <mat-icon mat-card-avatar [ngClass]="'status-icon ' + order.status" >
+                {{ getStatusIcon(order.status) }}
+              </mat-icon>
+  
+              <mat-card-title>Order #{{ order.id }}</mat-card-title>
+              <mat-card-subtitle>Status: {{ order.status | titlecase }}</mat-card-subtitle>
+            </mat-card-header>
+      
+            <mat-card-content>
+              <p><strong>Total:</strong> ${{ order.total }}</p>
+              <p><strong>Date:</strong> {{ order.order_date | date }}</p>
+            </mat-card-content>
+          </mat-card>
+        }
+      </div>
+    </section>
+
+    <section class="paginator-section">
+      <mat-paginator
+        [length]="totalItems"
+        [pageSize]="pageSize"
+        [pageIndex]="pageIndex"
+        [pageSizeOptions]="[30, 60, 90]"
+        (page)="onPageChange($event)"> 
+      </mat-paginator>
+    </section>
+  }@else {
+    <section class="no-results">
+      <mat-icon class="no-results-icon">remove_shopping_cart</mat-icon>
+      <h3>No orders found</h3>
+      <p>We couldn't find any orders in your account.</p>
+      <button matButton="outlined" [routerLink]="routes.user.home">Back to Shop</button>
+    </section>
+  }
+
+</main>

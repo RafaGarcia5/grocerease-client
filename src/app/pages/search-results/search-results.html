@@ -1,0 +1,31 @@
+<main>
+  <section class="header-section">
+    <h2 class="page-title">Search Results</h2>
+  </section>
+
+  @if (products.length !== 0) {
+    <section class="product-section">
+      <div class="products-grid">
+        @for (product of products; track product.id) {
+          <app-product-card
+            [product]="product"
+            [quantity]="quantities[product.id]"
+            (updateClick)="editProduct(product)"
+          ></app-product-card>
+        }
+      </div>
+    </section>
+
+    <section class="paginator-section">
+      <mat-paginator
+        [length]="totalItems"
+        [pageSize]="pageSize"
+        [pageIndex]="pageIndex"
+        [pageSizeOptions]="[30, 60, 90]"
+        (page)="onPageChange($event)"> 
+      </mat-paginator>
+    </section>
+  }@else {
+    <app-not-found></app-not-found>
+  }
+</main>

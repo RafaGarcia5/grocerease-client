@@ -1,0 +1,46 @@
+@if (product) {
+    <div class="product-detail-container">
+        <div class="image-container">
+            <img [src]="product.image_url || 'assets/no-image.png'" [alt]="product.name">
+        </div>
+        
+        <div class="details-container">
+            <h1>{{ product.name }}</h1>
+            <h2>{{ product.price | currency }}</h2>
+            <p>{{ product.description }}</p>
+            <!-- <p><strong>Stock:</strong> {{ product.stock }}</p> -->
+            <p><strong>Category:</strong> {{ product.category.name }}</p>
+
+            @if (quantity > 0) {
+                <div class="quantity-controls">
+                    <button matButton="outlined" (click)="decrease()">-</button>
+                    <span>{{ quantity }}</span>
+                    <button matButton="outlined" (click)="increase()">+</button>
+
+                    <button mat-icon-button class="btn-warn" (click)="remove()" matTooltip="Remove from cart">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            } @else {
+                @if (userRole) {
+                    <button mat-flat-button (click)="editProduct(product); $event.stopPropagation()">
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit Product</span>
+                    </button>
+                }@else {
+                    @if(product.status === 'active') {
+                        <button mat-flat-button (click)="addToCart()">
+                            <mat-icon>add_shopping_cart</mat-icon>
+                            <span>Add to Cart</span>
+                        </button>
+                    }@else {
+                        <p class="out-stock-message">
+                            <mat-icon>remove_shopping_cart</mat-icon>
+                            This product is out of stock
+                        </p>
+                    }
+                }
+            }
+        </div>
+    </div>
+}

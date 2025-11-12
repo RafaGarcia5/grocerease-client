@@ -1,0 +1,30 @@
+.no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #444;
+}
+
+.no-results-icon {
+  font-size: 64px;
+  color: #AF3800;
+  margin-bottom: 16px;
+  height: 64px;
+  width: 64px;
+  display: inline-flex;
+}
+
+.no-results h3 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  color: #AF3800;
+}
+
+.no-results p {
+  font-size: 1rem;
+  margin-bottom: 16px;
+  color: #666;
+}

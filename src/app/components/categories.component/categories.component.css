@@ -1,0 +1,52 @@
+.categories-container {
+  text-align: center;
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.category-label {
+  color: green;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.shop-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+.category-card {
+  border: 1px solid #e0e0e0;
+  transition: border-color 0.3s ease;
+  text-align: center;
+  padding: 10px;
+}
+
+.category-card img {
+  height: 100px;
+  object-fit: contain;
+}
+
+.category-card p {
+  margin: 10px 0 0 0;
+  font-weight: 500;
+}
+
+.category-card:hover {
+  border-color: green;
+  cursor: pointer;
+  
+}
+
+.category-card.active {
+  border: 2px solid green;
+}

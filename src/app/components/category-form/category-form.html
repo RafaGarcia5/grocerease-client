@@ -1,0 +1,28 @@
+<main>
+    <div class="category-modal-header">
+        <h1 mat-dialog-title>
+            {{ isEdit ? 'Edit Category' : 'Add Category' }}
+        </h1>
+    </div>
+
+    <div mat-dialog-content class="category-form-container">
+        <form [formGroup]="form" class="category-form">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" maxlength="100" />
+                @if(form.get('name')?.hasError('required')) {
+                    <mat-error >
+                        Name is required
+                    </mat-error>
+                }
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-actions class="category-modal-actions">
+        <button matButton (click)="close()">Cancel</button>
+        <button matButton="filled" (click)="save()" [disabled]="form.invalid">
+            Save
+        </button>
+    </div>
+</main>

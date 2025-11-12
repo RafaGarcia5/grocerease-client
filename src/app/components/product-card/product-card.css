@@ -1,0 +1,59 @@
+.product-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+mat-card-header {
+  width: 100%;
+  margin-left: 1rem;
+  box-sizing: border-box;
+}
+
+mat-card-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+mat-card-subtitle {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+mat-card-content p {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+mat-card img {
+  object-fit: cover;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.quantity-controls button {
+  min-width: 32px;
+}
+
+.btn-warn {
+  color: #e53935;
+}

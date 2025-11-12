@@ -1,0 +1,45 @@
+<mat-card class="product-card" (click)="goToProduct()">
+  <mat-card-header>
+    <mat-card-title>{{ product.name }}</mat-card-title>
+    <mat-card-subtitle>{{ product.price | currency }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <img mat-card-md-image [src]="product.image_url || 'assets/no-image.png'" alt="{{ product.name }}">
+
+  <mat-card-content>
+    <p>{{ product.description }}</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    @if (mode === 'catalog') {
+      @if (quantity > 0) {
+          <div class="quantity-controls">
+            <button matButton="outlined" (click)="decrease(); $event.stopPropagation()">-</button>
+            <span>{{ quantity }}</span>
+            <button matButton="outlined" (click)="increase(); $event.stopPropagation()">+</button>
+          </div>
+      }@else {
+        @if (userRole) {
+          <button mat-flat-button (click)="onUpdateClick(); $event.stopPropagation()">
+              <mat-icon>edit</mat-icon>
+              <span>Edit Product</span>
+          </button>
+        }@else {
+          <button mat-flat-button (click)="addToCart(); $event.stopPropagation()" [disabled]="product.status==='inactive'">
+              <mat-icon>{{ product.status === 'active' ? 'add_shopping_cart' : 'remove_shopping_cart' }}</mat-icon>
+              <span>{{ product.status === 'active' ? 'Add to Cart' : 'Out of stock' }}</span>
+          </button>
+        }
+      }
+    }@else if (mode === 'cart') {
+      <div class="quantity-controls">
+        <button matButton="outlined" (click)="decrease(); $event.stopPropagation()">-</button>
+        <span>{{ quantity }}</span>
+        <button matButton="outlined" (click)="increase(); $event.stopPropagation()">+</button>
+        <button mat-icon-button class="btn-warn" (click)="removeClick.emit(); $event.stopPropagation()" matTooltip="Remove from cart">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    }
+  </mat-card-actions>
+</mat-card>

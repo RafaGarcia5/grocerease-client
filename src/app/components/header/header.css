@@ -1,0 +1,71 @@
+.header-toolbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 10%;
+    padding-top: 15px;
+    box-sizing: border-box;
+    color: white;
+    background-color: #EAAB04;
+    /* background-color: #78BC61; */
+
+}
+
+.logo-img {
+    height: 70px;
+    width: auto;
+}
+
+.search-bar {
+    flex: 2;
+    max-width: 50%;
+    margin: 0 20px;
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+
+.search-field {
+    width: 100%;
+}
+
+.header-menu {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header-actions {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.user-greeting {
+    font-size: 14px;
+}
+
+.action-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+::ng-deep .mat-menu-item.no-hover {
+  cursor: default;
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: normal;
+  padding-left: 16px; padding-right: 16px;
+}
+
+::ng-deep .mat-menu-item.no-hover a {
+  pointer-events: auto;
+  cursor: pointer;
+  margin-left: 5px;
+  color: #3f51b5;
+  text-decoration: underline;
+}
+

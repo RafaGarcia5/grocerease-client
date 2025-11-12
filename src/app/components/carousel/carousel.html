@@ -1,0 +1,14 @@
+<swiper-container 
+  pagination="true" 
+  pagination-clickable="true"
+  centered-slides="true" 
+  autoplay="true"
+  [autoplay]="{delay:5000}"
+  effect="fade"
+>
+  @for (image of carouselImages; track $index) {
+    <swiper-slide>
+      <img [src]="image" alt="Carousel image" loading="lazy"/>
+    </swiper-slide>
+  }
+</swiper-container>

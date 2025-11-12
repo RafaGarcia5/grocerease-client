@@ -1,0 +1,45 @@
+.product-detail-container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.image-container img {
+  width: 350px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.details-container {
+  flex: 1;
+}
+
+.details-container h1 {
+  margin: 0;
+}
+
+.details-container h2 {
+  margin: 0.5rem 0;
+  color: #4caf50;
+}
+
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.quantity-controls button {
+  min-width: 32px;
+}
+
+.btn-warn, .out-stock-message {
+  color: #e53935;
+}
+
+.out-stock-message{
+  font-size: 1.5rem;
+}

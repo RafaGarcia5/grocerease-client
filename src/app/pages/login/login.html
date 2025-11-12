@@ -1,0 +1,59 @@
+<div class="main-page">
+    <div class="form-side">
+        <a class="main-logo" [routerLink]="routes.user.home">
+            <img src="assets/logo-grocerease-white.png" alt="Grocerease logo" />
+        </a>
+        <div class="form-container">
+            <h1>Sign In</h1>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" formControlName="email" required maxlength="100"/>
+                    @if (loginForm.get('email')?.hasError('required')) {
+                        <mat-error>Email is required</mat-error>
+                    }
+                    @if (loginForm.get('email')?.hasError('email')) {
+                        <mat-error>Invalid email format</mat-error>
+                    }
+                </mat-form-field>
+            
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="hide() ? 'password' : 'text'" formControlName="password" required maxlength="15"/>
+                    <button
+                        type="button"
+                        matIconButton
+                        matSuffix
+                        (click)="clickEvent($event)"
+                        [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide()"
+                        >
+                        <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    @if (loginForm.get('password')?.hasError('required')) {
+                        <mat-error>Password is required</mat-error>
+                    }
+                </mat-form-field>
+            
+                @if (invalidCredentials) {
+                    <div class="form-error">
+                        Invalid email or password.
+                    </div>
+                }
+
+                <button matButton="filled" type="submit" [disabled]="!loginForm.valid" class="btn-sign">
+                    @if(loading()){
+                        <mat-spinner diameter="30"></mat-spinner>
+                    }@else {
+                        <span>Sign In</span>
+                    }
+                </button>
+            </form>
+            <p class="signin-text">Don't have an account? <a [routerLink]="routes.auth.register">Sign Up</a></p>
+        </div>
+    </div>
+
+    <div class="image-side">
+        <img src="assets/login.png" alt="Online Shop Image" />
+    </div>
+</div>

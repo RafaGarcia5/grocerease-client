@@ -1,0 +1,97 @@
+<mat-toolbar color="primary" class="header-toolbar">
+    <div class="header-menu">
+        <button mat-icon-button (click)="onMenuClick()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    
+        <a class="logo" [routerLink]="routes.user.home">
+            <img src="assets/logo-grocerease-white.png" alt="Logo" class="logo-img">
+        </a>
+    </div>
+
+    <div class="search-bar">
+        <mat-form-field appearance="fill" class="search-field">
+            <mat-label>Search Products</mat-label>
+            <input type="text" matInput [formControl]="searchControl" (keyup.enter)="onSearch()" />
+            <button mat-icon-button matSuffix (click)="onSearch()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+
+    <div class="header-actions">
+        <div class="user-greeting">
+            @if(isAuthenticated){
+                <span>
+                    Hi, {{user?.name}}
+                </span>
+            }@else{
+                <span>
+                    Hi, sign in
+                </span>
+            }
+        </div>
+        <div class="action-icons">
+            @if (isAuthenticated && user?.role !== 'vendor') {
+                <button mat-icon-button (click)="goToCart()">
+                    <mat-icon 
+                        [matBadge]="totalItems" 
+                        matBadgeColor="warn" 
+                        [matBadgeHidden]="totalItems === 0" 
+                        aria-hidden="false"
+                    >
+                        shopping_cart
+                    </mat-icon>
+                </button>
+                |
+            }
+            
+            <button mat-icon-button [matMenuTriggerFor]="profileMenu">
+                <mat-icon>person</mat-icon>
+            </button>
+        </div>
+
+        <mat-menu #profileMenu="matMenu">
+            @if (isAuthenticated) {
+                <button mat-menu-item [routerLink]="routes.user.profile">
+                    <mat-icon>face</mat-icon>
+                    <span>Account</span>
+                </button>
+
+                @if (user?.role === 'vendor') {
+                    <button mat-menu-item [routerLink]="routes.admin.products">
+                        <mat-icon>store</mat-icon>
+                        <span>Products</span>
+                    </button>
+                    <button mat-menu-item [routerLink]="routes.admin.categories">
+                        <mat-icon>category</mat-icon>
+                        <span>Categories</span>
+                    </button>
+                    <button mat-menu-item [routerLink]="routes.admin.orders">
+                        <mat-icon>receipt</mat-icon>
+                        <span>Order management</span>
+                    </button>
+                }@else {
+                    <button mat-menu-item [routerLink]="routes.user.orders">
+                        <mat-icon>receipt</mat-icon>
+                        <span>Orders</span>
+                    </button>
+                }
+
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Logout</span>
+                </button>
+            }@else {
+                <button mat-menu-item [routerLink]="routes.auth.login">
+                    <mat-icon>input</mat-icon>
+                    <span>Sign in</span>
+                </button>
+                <div class="mat-menu-item no-hover" >
+                    Are you new?
+                    <a [routerLink]="routes.auth.register" class="signup-link">Sign up</a>
+                </div>
+            }
+        </mat-menu>
+    </div>
+</mat-toolbar>

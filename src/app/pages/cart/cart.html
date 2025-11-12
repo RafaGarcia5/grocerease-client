@@ -1,0 +1,64 @@
+<main>
+  <!-- <section class="header-section">
+    <h2>Shopping Cart</h2>
+  </section> -->
+  <mat-horizontal-stepper linear #stepper class="stepper-section">
+    <mat-step [completed]="hasItems">
+      <ng-template matStepLabel>Review Cart</ng-template>
+
+      @if (!hasItems) {
+        <section class="cart-sections">
+          <img src="assets/empty-cart.svg" alt="Empty cart">
+          <h3>Your cart is empty</h3>
+          <p>Looks like you haven't added anything to your cart yet.</p>
+          <button mat-flat-button color="primary" (click)="goToHome()">
+            <mat-icon>storefront</mat-icon>
+            <span>Continue Shopping</span>
+          </button>
+        </section>
+      } @else {
+        <div class="cart-summary">
+          <h3>Total: {{ total.toFixed(2) | currency }}</h3>
+          <button mat-flat-button (click)="stepper.next()">Continue</button>
+        </div>
+
+        <div class="cart-grid">
+          @for (item of items; track $index) {
+            <app-product-card
+              [product]="item.product"
+              [quantity]="item.quantity"
+              mode="cart"
+              (removeClick)="remove(item.id)"
+            >
+            </app-product-card>
+          }
+        </div>
+      }
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Confirm</ng-template>
+      <app-cart-confirmation
+        [user]="user"
+        [items]="items"
+        [total]="total"
+        [stepper]="stepper"
+        [confirmOrder]="confirmOrder.bind(this)"
+      >
+      </app-cart-confirmation>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <section class="cart-sections">
+          <img src="assets/order-confirmed.svg" alt="Empty cart">
+          <h3>Order Confirmed</h3>
+          <p>Thank you for your purchase!</p>
+          <button mat-flat-button color="primary" (click)="resetCart(stepper)">
+            <mat-icon>receipt</mat-icon>
+            <span>Go to orders</span>
+          </button>
+        </section>
+    </mat-step>
+  </mat-horizontal-stepper>
+</main>

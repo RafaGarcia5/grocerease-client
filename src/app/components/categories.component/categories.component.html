@@ -1,0 +1,15 @@
+<div class="categories-container">
+  <h4 class="category-label">CATEGORY</h4>
+  <h2 class="shop-title">Shop by Top Categories</h2>
+
+  <div class="categories-grid">
+    @for (category of categories; track category.name) {
+      <mat-card class="category-card" (click)="selectCategory(category)" >
+        <mat-card-content>
+          <p>{{ category.name }}</p>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+</div>
+

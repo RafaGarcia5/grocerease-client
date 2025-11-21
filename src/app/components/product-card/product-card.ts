@@ -37,6 +37,13 @@ export class ProductCard {
     return this.authService.isVendor();
   }
 
+  get productImage(): string {
+    return this.product.images && this.product.images.length > 0 && this.product.images[0].url
+      ? this.product.images[0].url
+      : 'assets/no-image.png';
+  }
+
+
   onUpdateClick() {
     this.updateClick.emit();
   }
@@ -55,5 +62,6 @@ export class ProductCard {
 
   goToProduct() {
     this.navigation.goToProduct(this.product.id);
+    console.log(this.product)
   }
 }

@@ -15,14 +15,6 @@ describe('CartApiService', () => {
     cart_id: 1,
     product_id: 2,
     quantity: 3,
-    name: 'Laptop',
-    description: 'A nice laptop',
-    price: '999.99',
-    stock: 10,
-    image_url: null,
-    category_id: 1,
-    status: 'available',
-    category: { id: 1, name: 'Tech' },
     product: {
       id: 2,
       name: 'Laptop',
@@ -32,7 +24,8 @@ describe('CartApiService', () => {
       image_url: null,
       category_id: 1,
       status: 'available',
-      category: { id: 1, name: 'Tech' }
+      category: { id: 1, name: 'Tech' },
+      images: [{url: '', alt: null}]
     }
   };
 

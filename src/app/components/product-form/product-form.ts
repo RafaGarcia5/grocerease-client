@@ -41,9 +41,10 @@ export class ProductForm implements OnInit {
       description: new FormControl(this.data?.product?.description ?? '', Validators.required),
       price: new FormControl(this.data?.product?.price ?? 0, [Validators.required, Validators.min(0.1)]),
       stock: new FormControl(this.data?.product?.stock ?? 0, [Validators.required, Validators.min(0)]),
-      image_url: new FormControl(this.data?.product?.image_url ?? ''),
+      // image_url: new FormControl(this.data?.product?.image_url ?? ''),
       category_id: new FormControl(this.data?.product?.category_id ?? 0, Validators.required),
       status: new FormControl(this.data?.product?.status ?? 'active', Validators.required),
+      image: new FormControl(null),
     });
 
     this.categoryService.getCategories().subscribe({
@@ -54,11 +55,25 @@ export class ProductForm implements OnInit {
 
   onSave(): void {
     if (this.form.valid) {
-      this.dialogRef.close(this.form.value);
+      const data = {
+        ...this.form.value,
+        image: this.selectedFile ?? null
+      }
+      this.dialogRef.close(data);
     }
   }
 
   onCancel(): void {
     this.dialogRef.close();
+  }
+
+  selectedFile: File | null = null;
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+      this.form.patchValue({ image: file });
+    }
   }
 }

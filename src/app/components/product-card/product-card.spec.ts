@@ -23,7 +23,8 @@ describe('ProductCard', () => {
     image_url: null,
     category_id: 2,
     status: 'active',
-    category: { id: 2, name: 'Electronics'}
+    category: { id: 2, name: 'Electronics'},
+    images: [{url: '', alt: null}]
   };
 
   beforeEach(async () => {

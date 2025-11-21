@@ -22,17 +22,19 @@
           <button mat-flat-button (click)="stepper.next()">Continue</button>
         </div>
 
-        <div class="cart-grid">
-          @for (item of items; track $index) {
-            <app-product-card
-              [product]="item.product"
-              [quantity]="item.quantity"
-              mode="cart"
-              (removeClick)="remove(item.id)"
-            >
-            </app-product-card>
-          }
-        </div>
+        <!-- @if ( items !== undefined) { -->
+          <div class="cart-grid">
+            @for (item of items; track $index) {
+              <app-product-card
+                [product]="item.product"
+                [quantity]="item.quantity"
+                mode="cart"
+                (removeClick)="remove(item.id)"
+              >
+              </app-product-card>
+            }
+          </div>
+        <!-- } -->
       }
     </mat-step>
 

@@ -21,14 +21,12 @@ describe('CartService', () => {
     image_url: null,
     category_id: 1,
     status: 'active',
-    category: { id: 1, name: 'Electronics' }
+    category: { id: 1, name: 'Electronics' },
+    images: [{ url: null, alt: null}]
   };
 
   const mockCartItem: CartItem = { 
-    id: 100, cart_id: 1, product_id: 1, quantity: 2, product: mockProduct, 
-    name: mockProduct.name, description: mockProduct.description, price: mockProduct.price,
-    stock: mockProduct.stock, image_url: null, category_id: mockProduct.category_id,
-    status: mockProduct.status, category: mockProduct.category
+    id: 100, cart_id: 1, product_id: 1, quantity: 2, product: mockProduct
   };
 
   beforeEach(() => {

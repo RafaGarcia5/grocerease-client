@@ -29,10 +29,14 @@
         </mat-form-field>
       </div>
   
-      <mat-form-field appearance="outline" class="full-width">
+      <!-- <mat-form-field appearance="outline" class="full-width">
         <mat-label>Image URL</mat-label>
         <input matInput formControlName="image_url">
-      </mat-form-field>
+      </mat-form-field> -->
+      <div class="full-width file-upload">
+        <label>Product Image</label>
+        <input type="file" (change)="onFileSelected($event)" />
+      </div>
   
       <div class="form-divider">
         <mat-form-field appearance="outline" class="half-width">

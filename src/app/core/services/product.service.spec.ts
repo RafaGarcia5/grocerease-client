@@ -69,7 +69,8 @@ describe('ProductService', () => {
         image_url: null,
         category_id: 1,
         status: 'active',
-        category: { id: 1, name: 'Electronics' }
+        category: { id: 1, name: 'Electronics' },
+        images: [{ url: null, alt: null}]
       };
   
       apiSpy.get.and.returnValue(of(mockProduct));
@@ -114,7 +115,8 @@ describe('ProductService', () => {
         image_url: null,
         category_id: 1,
         status: 'active',
-        category: { id: 1, name: 'Accessories' }
+        category: { id: 1, name: 'Accessories' },
+        images: [{ url: null, alt: null}]
       };
   
       apiSpy.post.and.returnValue(of(mockResponse));
@@ -123,7 +125,16 @@ describe('ProductService', () => {
         expect(product).toEqual(mockResponse);
       });
   
-      expect(apiSpy.post).toHaveBeenCalledWith('product', newProduct);
+      const call = apiSpy.post.calls.mostRecent();
+
+      expect(call.args[0]).toBe('product');
+      expect(call.args[2]).toBeTrue();
+
+      const formData = call.args[1] as FormData;
+      expect(formData.get('name')).toBe('Mouse');
+      expect(formData.get('description')).toBe('Wireless mouse');
+      expect(formData.get('price')).toBe('25');
+      expect(formData.get('stock')).toBe('50');
     });
   });
 
@@ -139,16 +150,24 @@ describe('ProductService', () => {
         image_url: null,
         category_id: 1,
         status: 'active',
-        category: { id: 1, name: 'Electronics' }
+        category: { id: 1, name: 'Electronics' },
+        images: [{ url: null, alt: null}]
       };
   
-      apiSpy.put.and.returnValue(of(mockResponse));
+      apiSpy.post.and.returnValue(of(mockResponse));
   
       service.updateProduct(1, updatedData).subscribe(product => {
         expect(product).toEqual(mockResponse);
       });
   
-      expect(apiSpy.put).toHaveBeenCalledWith('product/1', updatedData);
+      const call = apiSpy.post.calls.mostRecent();
+
+      expect(call.args[0]).toBe('product/1');
+      expect(call.args[2]).toBeTrue();
+
+      const formData = call.args[1] as FormData;
+      expect(formData.get('name')).toBe('Updated Laptop');
+      expect(formData.get('_method')).toBe('PUT');
     });
   });
 });

@@ -24,7 +24,8 @@ describe('ProductDetails', () => {
     status: 'active',
     image_url: null,
     category_id: 1,
-    category: { id: 1, name: 'Category A' }
+    category: { id: 1, name: 'Category A' },
+    images: [{ url: null, alt: null}]
   };
 
   const mockActivatedRoute = {

@@ -31,7 +31,8 @@ describe('Cart', () => {
     image_url: null,
     category_id: 1,
     status: 'active',
-    category: { id: 1, name: 'Category' }
+    category: { id: 1, name: 'Category' },
+    images: [{ url: null, alt: null}]
   };
 
   const mockItems = [

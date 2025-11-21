@@ -14,8 +14,8 @@ describe('SearchResults', () => {
   let fixture: ComponentFixture<SearchResults>;
 
   const mockProducts = [
-    { id: 1, name: 'Laptop', description: 'High-end gaming laptop', price: '100', stock: 10, image_url: 'http://example.com/laptop.jpg', category_id: 2, status: 'active', category: { id: 1, name: 'Electronics'}},
-    { id: 2, name: 'Mouse', description: 'High-end gaming mouse', price: '50', stock: 15, image_url: null, category_id: 2, status: 'active', category: { id: 1, name:'Electronics'}},
+    { id: 1, name: 'Laptop', description: 'High-end gaming laptop', price: '100', stock: 10, image_url: 'http://example.com/laptop.jpg', category_id: 2, status: 'active', category: { id: 1, name: 'Electronics'}, images: [{ url: null, alt: null}]},
+    { id: 2, name: 'Mouse', description: 'High-end gaming mouse', price: '50', stock: 15, image_url: null, category_id: 2, status: 'active', category: { id: 1, name:'Electronics'}, images: [{ url: null, alt: null}]},
   ];
 
   const mockRoute = {

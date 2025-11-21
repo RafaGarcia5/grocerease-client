@@ -71,9 +71,10 @@ describe('ProductForm', () => {
         description: 'A description',
         price: 200,
         stock: 5,
-        image_url: 'http://test.com/img.jpg',
+        // image_url: 'http://test.com/img.jpg',
         category_id: 1,
-        status: 'active'
+        status: 'active',
+        image: null
       });
   
       component.onSave();

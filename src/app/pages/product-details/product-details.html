@@ -1,7 +1,7 @@
 @if (product) {
     <div class="product-detail-container">
         <div class="image-container">
-            <img [src]="product.image_url || 'assets/no-image.png'" [alt]="product.name">
+            <img [src]="product.images[0].url" [alt]="product.name">
         </div>
         
         <div class="details-container">
